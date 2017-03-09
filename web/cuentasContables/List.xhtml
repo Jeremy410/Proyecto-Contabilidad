@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCuentasContablesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCuentasContablesEmpty}" rendered="#{cuentasContablesController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{cuentasContablesController.items.rowCount > 0}">
+                    <h:outputText value="#{cuentasContablesController.pagination.pageFirstItem + 1}..#{cuentasContablesController.pagination.pageLastItem + 1}/#{cuentasContablesController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{cuentasContablesController.previous}" value="#{bundle.Previous} #{cuentasContablesController.pagination.pageSize}" rendered="#{cuentasContablesController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{cuentasContablesController.next}" value="#{bundle.Next} #{cuentasContablesController.pagination.pageSize}" rendered="#{cuentasContablesController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{cuentasContablesController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentasContablesTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentasContablesTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentasContablesTitle_permiteMovimiento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.permiteMovimiento}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentasContablesTitle_nivel}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nivel}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentasContablesTitle_balance}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.balance}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentasContablesTitle_estado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCuentasContablesTitle_tipoCuenta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoCuenta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{cuentasContablesController.prepareView}" value="#{bundle.ListCuentasContablesViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{cuentasContablesController.prepareEdit}" value="#{bundle.ListCuentasContablesEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{cuentasContablesController.destroy}" value="#{bundle.ListCuentasContablesDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{cuentasContablesController.prepareCreate}" value="#{bundle.ListCuentasContablesCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListCuentasContablesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

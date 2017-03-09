@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCuentasContablesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCuentasContablesLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{cuentasContablesController.selected.id}" title="#{bundle.CreateCuentasContablesTitle_id}" required="true" requiredMessage="#{bundle.CreateCuentasContablesRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateCuentasContablesLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{cuentasContablesController.selected.descripcion}" title="#{bundle.CreateCuentasContablesTitle_descripcion}" required="true" requiredMessage="#{bundle.CreateCuentasContablesRequiredMessage_descripcion}"/>
+                    <h:outputLabel value="#{bundle.CreateCuentasContablesLabel_permiteMovimiento}" for="permiteMovimiento" />
+                    <h:inputText id="permiteMovimiento" value="#{cuentasContablesController.selected.permiteMovimiento}" title="#{bundle.CreateCuentasContablesTitle_permiteMovimiento}" required="true" requiredMessage="#{bundle.CreateCuentasContablesRequiredMessage_permiteMovimiento}"/>
+                    <h:outputLabel value="#{bundle.CreateCuentasContablesLabel_nivel}" for="nivel" />
+                    <h:inputText id="nivel" value="#{cuentasContablesController.selected.nivel}" title="#{bundle.CreateCuentasContablesTitle_nivel}" required="true" requiredMessage="#{bundle.CreateCuentasContablesRequiredMessage_nivel}"/>
+                    <h:outputLabel value="#{bundle.CreateCuentasContablesLabel_balance}" for="balance" />
+                    <h:inputText id="balance" value="#{cuentasContablesController.selected.balance}" title="#{bundle.CreateCuentasContablesTitle_balance}" required="true" requiredMessage="#{bundle.CreateCuentasContablesRequiredMessage_balance}"/>
+                    <h:outputLabel value="#{bundle.CreateCuentasContablesLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{cuentasContablesController.selected.estado}" title="#{bundle.CreateCuentasContablesTitle_estado}" required="true" requiredMessage="#{bundle.CreateCuentasContablesRequiredMessage_estado}"/>
+                    <h:outputLabel value="#{bundle.CreateCuentasContablesLabel_tipoCuenta}" for="tipoCuenta" />
+                    <h:selectOneMenu id="tipoCuenta" value="#{cuentasContablesController.selected.tipoCuenta}" title="#{bundle.CreateCuentasContablesTitle_tipoCuenta}" required="true" requiredMessage="#{bundle.CreateCuentasContablesRequiredMessage_tipoCuenta}">
+                        <f:selectItems value="#{tiposDeCuentasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{cuentasContablesController.create}" value="#{bundle.CreateCuentasContablesSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{cuentasContablesController.prepareList}" value="#{bundle.CreateCuentasContablesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCuentasContablesIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTiposDeMonedaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTiposDeMonedaLabel_id}"/>
+                    <h:outputText value="#{tiposDeMonedaController.selected.id}" title="#{bundle.ViewTiposDeMonedaTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewTiposDeMonedaLabel_descripcion}"/>
+                    <h:outputText value="#{tiposDeMonedaController.selected.descripcion}" title="#{bundle.ViewTiposDeMonedaTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.ViewTiposDeMonedaLabel_tasaCambiaria}"/>
+                    <h:outputText value="#{tiposDeMonedaController.selected.tasaCambiaria}" title="#{bundle.ViewTiposDeMonedaTitle_tasaCambiaria}"/>
+                    <h:outputText value="#{bundle.ViewTiposDeMonedaLabel_estado}"/>
+                    <h:outputText value="#{tiposDeMonedaController.selected.estado}" title="#{bundle.ViewTiposDeMonedaTitle_estado}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tiposDeMonedaController.destroyAndView}" value="#{bundle.ViewTiposDeMonedaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTiposDeMonedaEditLink}"/>
+                <br />
+                <h:commandLink action="#{tiposDeMonedaController.prepareCreate}" value="#{bundle.ViewTiposDeMonedaCreateLink}" />
+                <br />
+                <h:commandLink action="#{tiposDeMonedaController.prepareList}" value="#{bundle.ViewTiposDeMonedaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTiposDeMonedaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

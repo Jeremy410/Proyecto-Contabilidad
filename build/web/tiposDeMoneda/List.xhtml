@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTiposDeMonedaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTiposDeMonedaEmpty}" rendered="#{tiposDeMonedaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tiposDeMonedaController.items.rowCount > 0}">
+                    <h:outputText value="#{tiposDeMonedaController.pagination.pageFirstItem + 1}..#{tiposDeMonedaController.pagination.pageLastItem + 1}/#{tiposDeMonedaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tiposDeMonedaController.previous}" value="#{bundle.Previous} #{tiposDeMonedaController.pagination.pageSize}" rendered="#{tiposDeMonedaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tiposDeMonedaController.next}" value="#{bundle.Next} #{tiposDeMonedaController.pagination.pageSize}" rendered="#{tiposDeMonedaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tiposDeMonedaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTiposDeMonedaTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTiposDeMonedaTitle_descripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTiposDeMonedaTitle_tasaCambiaria}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tasaCambiaria}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTiposDeMonedaTitle_estado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tiposDeMonedaController.prepareView}" value="#{bundle.ListTiposDeMonedaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tiposDeMonedaController.prepareEdit}" value="#{bundle.ListTiposDeMonedaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tiposDeMonedaController.destroy}" value="#{bundle.ListTiposDeMonedaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tiposDeMonedaController.prepareCreate}" value="#{bundle.ListTiposDeMonedaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTiposDeMonedaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

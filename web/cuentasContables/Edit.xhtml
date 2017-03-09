@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCuentasContablesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCuentasContablesLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{cuentasContablesController.selected.id}" title="#{bundle.EditCuentasContablesTitle_id}" required="true" requiredMessage="#{bundle.EditCuentasContablesRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditCuentasContablesLabel_descripcion}" for="descripcion" />
+                    <h:inputText id="descripcion" value="#{cuentasContablesController.selected.descripcion}" title="#{bundle.EditCuentasContablesTitle_descripcion}" required="true" requiredMessage="#{bundle.EditCuentasContablesRequiredMessage_descripcion}"/>
+                    <h:outputLabel value="#{bundle.EditCuentasContablesLabel_permiteMovimiento}" for="permiteMovimiento" />
+                    <h:inputText id="permiteMovimiento" value="#{cuentasContablesController.selected.permiteMovimiento}" title="#{bundle.EditCuentasContablesTitle_permiteMovimiento}" required="true" requiredMessage="#{bundle.EditCuentasContablesRequiredMessage_permiteMovimiento}"/>
+                    <h:outputLabel value="#{bundle.EditCuentasContablesLabel_nivel}" for="nivel" />
+                    <h:inputText id="nivel" value="#{cuentasContablesController.selected.nivel}" title="#{bundle.EditCuentasContablesTitle_nivel}" required="true" requiredMessage="#{bundle.EditCuentasContablesRequiredMessage_nivel}"/>
+                    <h:outputLabel value="#{bundle.EditCuentasContablesLabel_balance}" for="balance" />
+                    <h:inputText id="balance" value="#{cuentasContablesController.selected.balance}" title="#{bundle.EditCuentasContablesTitle_balance}" required="true" requiredMessage="#{bundle.EditCuentasContablesRequiredMessage_balance}"/>
+                    <h:outputLabel value="#{bundle.EditCuentasContablesLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{cuentasContablesController.selected.estado}" title="#{bundle.EditCuentasContablesTitle_estado}" required="true" requiredMessage="#{bundle.EditCuentasContablesRequiredMessage_estado}"/>
+                    <h:outputLabel value="#{bundle.EditCuentasContablesLabel_tipoCuenta}" for="tipoCuenta" />
+                    <h:selectOneMenu id="tipoCuenta" value="#{cuentasContablesController.selected.tipoCuenta}" title="#{bundle.EditCuentasContablesTitle_tipoCuenta}" required="true" requiredMessage="#{bundle.EditCuentasContablesRequiredMessage_tipoCuenta}">
+                        <f:selectItems value="#{tiposDeCuentasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{cuentasContablesController.update}" value="#{bundle.EditCuentasContablesSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCuentasContablesViewLink}"/>
+                <br />
+                <h:commandLink action="#{cuentasContablesController.prepareList}" value="#{bundle.EditCuentasContablesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditCuentasContablesIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

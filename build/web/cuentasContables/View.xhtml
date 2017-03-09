@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCuentasContablesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCuentasContablesLabel_id}"/>
+                    <h:outputText value="#{cuentasContablesController.selected.id}" title="#{bundle.ViewCuentasContablesTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewCuentasContablesLabel_descripcion}"/>
+                    <h:outputText value="#{cuentasContablesController.selected.descripcion}" title="#{bundle.ViewCuentasContablesTitle_descripcion}"/>
+                    <h:outputText value="#{bundle.ViewCuentasContablesLabel_permiteMovimiento}"/>
+                    <h:outputText value="#{cuentasContablesController.selected.permiteMovimiento}" title="#{bundle.ViewCuentasContablesTitle_permiteMovimiento}"/>
+                    <h:outputText value="#{bundle.ViewCuentasContablesLabel_nivel}"/>
+                    <h:outputText value="#{cuentasContablesController.selected.nivel}" title="#{bundle.ViewCuentasContablesTitle_nivel}"/>
+                    <h:outputText value="#{bundle.ViewCuentasContablesLabel_balance}"/>
+                    <h:outputText value="#{cuentasContablesController.selected.balance}" title="#{bundle.ViewCuentasContablesTitle_balance}"/>
+                    <h:outputText value="#{bundle.ViewCuentasContablesLabel_estado}"/>
+                    <h:outputText value="#{cuentasContablesController.selected.estado}" title="#{bundle.ViewCuentasContablesTitle_estado}"/>
+                    <h:outputText value="#{bundle.ViewCuentasContablesLabel_tipoCuenta}"/>
+                    <h:outputText value="#{cuentasContablesController.selected.tipoCuenta}" title="#{bundle.ViewCuentasContablesTitle_tipoCuenta}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{cuentasContablesController.destroyAndView}" value="#{bundle.ViewCuentasContablesDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCuentasContablesEditLink}"/>
+                <br />
+                <h:commandLink action="#{cuentasContablesController.prepareCreate}" value="#{bundle.ViewCuentasContablesCreateLink}" />
+                <br />
+                <h:commandLink action="#{cuentasContablesController.prepareList}" value="#{bundle.ViewCuentasContablesShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCuentasContablesIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
